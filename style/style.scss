@@ -1,0 +1,166 @@
+$color-primary: #4c2982;
+$color-secondery: #f9d170;
+$color-bg: #f9f7f3;
+$color-text: #252525;
+$color-light: #f3f3f3;
+$color-seccess: #067973;
+$color-seccess-bg: #f5fffe;
+$color-error: #b71540;
+$color-error-bg: #fdeff3;
+$color-shadow: #170b291f;
+
+@mixin box($border-color, $backgroud-color, $text-color) {
+  padding: 1rem;
+  border: 1px solid $border-color;
+  background: $backgroud-color;
+  color: $text-color;
+}
+
+@keyframes move {
+  0% {
+    transform: translateY(0.4rem);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url('fonts/Inter-Black.woff2') format('woff2'),
+    url('fonts/Inter-Black.woff') format('woff');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: $color-light;
+  height: 100vh;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Inter';
+  font-size: 14px;
+  line-height: 1.1;
+
+  .signup {
+    max-width: 20rem;
+
+    h1 {
+      font-weight: 900;
+      font-size: 2rem;
+      color: $color-primary;
+      margin-bottom: 2rem;
+    }
+
+    &__form {
+
+      span {
+        font-weight: 600;
+        color: $color-primary;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+      }
+
+      form {
+        display: flex;
+        margin: 0.7rem 0;
+
+        input[type='text'] {
+          border-style: none;
+          width: 80%;
+          padding: 14px;
+          border: none;
+          box-shadow: -4px 9px 11px -4px $color-shadow;
+          outline-offset: -1px;
+
+          &:focus {
+            outline: 1px solid $color-primary;
+          }
+        }
+
+        .submit-button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+          background: $color-secondery;
+          width: 20%;
+
+          input[type='submit'] {
+            position: relative;
+            border-style: none;
+          }
+
+          .submit-icon {
+            position: absolute;
+            width: 1.5rem;
+            height: 1.5rem;
+            fill: $color-primary;
+          }
+        }
+      }
+    }
+
+    .alert-success {
+      @include box($color-seccess, $color-seccess-bg, $color-seccess);
+      display: flex;
+      animation: move 250ms ease-in;
+
+      .check {
+        width: 1.5rem;
+        height: 1.2rem;
+        fill: $color-seccess;
+      }
+
+      p {
+        margin-left: 0.5rem;
+
+        .bold {
+          display: block;
+          font-weight: 900;
+          margin-bottom: 0.5rem;
+        }
+      }
+    }
+
+
+    &__alert {
+      width: 20rem;
+      height: 5rem;
+
+      .alert-error {
+        @include box($color-error, $color-error-bg, $color-error);
+        display: flex;
+
+        .alert-triangle {
+          width: 1.5rem;
+          height: 1.2rem;
+          fill: $color-error;
+        }
+
+        p {
+          margin-left: 0.5rem;
+
+          .bold {
+            display: block;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+          }
+        }
+      }
+    }
+  }
+}
